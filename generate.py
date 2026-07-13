@@ -55,6 +55,7 @@ def build(p, tag):
     W, H = 960, 480
 
     # ---- left side: large V logo ----
+<<<<<<< HEAD
     # Real monospace metrics: char width ≈ 0.6 * font-size, line-height ≈ 1.25 * font-size.
     # These are only used for LAYOUT (divider / right-column position) — the
     # actual glyph rendering is untouched (no letter-spacing).
@@ -63,6 +64,14 @@ def build(p, tag):
     logo_ch = round(logo_font * 1.25)    # ≈ 38
     logo_w = max(len(l) for l in ASCII_V) * logo_cw
     logo_h = len(ASCII_V) * logo_ch
+=======
+    # 6 lines, max 13 chars, at font-size 44, ch≈52, cw≈26
+    logo_font = 30
+    logo_ch = 52
+    logo_cw = 26
+    logo_w = max(len(l) for l in ASCII_V) * logo_cw  # ~338
+    logo_h = len(ASCII_V) * logo_ch                  # ~312
+>>>>>>> e01b0d0b2cbc6415d907318b7163d5dd7bef6023
 
     # ---- panel & layout ----
     panel_x, panel_y = 22, 50
