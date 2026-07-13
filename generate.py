@@ -44,11 +44,11 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 1000, 480
+    W, H = 960, 480
 
     # ---- left side: large V logo ----
     # 6 lines, max 13 chars, at font-size 44, ch≈52, cw≈26
-    logo_font = 44
+    logo_font = 30
     logo_ch = 52
     logo_cw = 26
     logo_w = max(len(l) for l in ASCII_V) * logo_cw  # ~338
