@@ -2,14 +2,8 @@
 """Generate two RETRO animated SVGs (dark.svg, light.svg) for the Blackwall-V
 GitHub profile. Pure SVG + SMIL only — no CSS, HTML, or script.
 
-Centerpiece: animated CRT terminal with:
-  - BLOCK ASCII art logo (BLACKWALL-V) at the top, with generous padding.
-  - Typed shell-command script (whoami / cat stack / echo $STATUS).
-  - Stack tags row.
-  - Bottom status bar.
-  - CRT background: drifting phosphor glow blobs, scanlines, scan beam, vignette.
-
-All layout is computed so vertical positions are separated by positive gaps.
+Layout: a large block "V" logo on the left, terminal content on the right.
+Canvas stays at 940px wide. ASCII art is the "V" character rendered large.
 """
 import os
 
@@ -17,17 +11,14 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 ASSETS = os.path.join(ROOT, "assets")
 os.makedirs(ASSETS, exist_ok=True)
 
-# ASCII art hard-coded so the output is deterministic.
-ASCII = [
-    "*@@@***@@m *@@@                   *@@@                                   *@@@   *@@@          *@@@@*   *@@@*  *@",
-    "  @@    @@   @@                     @@                                     @@     @@            *@@     m@    m@",
-    "  @@    @@   @@   m@*@@m   m@@*@@   @@  m@@* *@@*    m@    *@@* m@*@@m     @@     @@             @@m   m@     *@",
-    "  @@***@mm   !@  @@   @@  @@*  @@   @@ m@      @@   m@@@   m@  @@   @@     !@     !@              @@m  @*     m@",
-    "  @!    *@   !@   m@@@!@  @!        !@m@@       @@ m@  @@ m@    m@@@!@     !@     !@    @@@@@     *!@ !*      *@",
-    "  !!    m@   !@  @!   !@  @!m    m  !@ *@@m      @@@    @!!    @!   !@     !@     !@               !@@m      m@",
-    "  !:    *!   !!   !!!!:!  !!        !!!!!        !@!!   !:!     !!!!:!     !!     !!               !! !*      *@",
-    "  !:    !!   :!  !!   :!  !:!    !  :! *!!!      !!!    !:!    !!   :!     :!     :!               !!::     :@",
-    ": !: : : : : : :!: : !:  : : :  : : :  : :      :      :     :!: : !:  : : :  : : :               :       ::",
+# Large block "V" logo (6 lines, rendered at large font-size)
+ASCII_V = [
+    "██╗   ██╗",
+    "    ██║   ██║",
+    "    ██║   ██║",
+    "    ╚██╗ ██╔╝",
+    "     ╚████╔╝",
+    "      ╚═══╝",
 ]
 
 DARK = dict(
@@ -53,23 +44,26 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 940, 600
+    W, H = 940, 480
 
-    # ---- compute ASCII dimensions ----
-    # at font-size 12 monospace, advance ~7.2px
-    cw, ch = 7.2, 17
-    ascii_w = max(len(l) for l in ASCII) * cw
-    ascii_h = len(ASCII) * ch
+    # ---- left side: large V logo ----
+    # 6 lines, max 13 chars, at font-size 44, ch≈52, cw≈26
+    logo_font = 44
+    logo_ch = 52
+    logo_cw = 26
+    logo_w = max(len(l) for l in ASCII_V) * logo_cw  # ~338
+    logo_h = len(ASCII_V) * logo_ch                  # ~312
 
-    # ---- panel & ASCII placement (padding around the figlet) ----
+    # ---- panel & layout ----
     panel_x, panel_y = 22, 50
-    panel_w = ascii_w + 84
+    panel_w = W - 44
     panel_h = H - panel_y - 18
 
-    ax = 60
-    ay = 108
+    logo_ax = 60          # left padding from panel
+    logo_ay = 100         # below title bar
 
-    # ---- typed script (compact, 5 lines) ----
+    # ---- right side: terminal content ----
+    # script: 7 lines, compact
     script = [
         (True,  "whoami",                                   p["accent"]),
         (False, "blackwall-v — data/ML engineer",            p["fg"]),
@@ -80,22 +74,23 @@ def build(p, tag):
         (False, "open to collaboration",                    p["accent3"]),
     ]
 
-    # ---- typed script positioning (clear of ASCII + divider) ----
-    div_y = ay + ascii_h + 14
-    ty = div_y + 36
+    # right column starts after the logo
+    right_x = logo_ax + logo_w + 40   # gap between logo and script
+    script_x = right_x
+    script_first_y = logo_ay + 12
     line_step = 22
     begin = 0.4
     step = 1.0
     nodes = []
     for i, (is_cmd, text, color) in enumerate(script):
-        y = ty + i * line_step
+        y = script_first_y + i * line_step
         b = begin + i * step
         if is_cmd:
             nodes.append(
                 f'  <g opacity="0">'
-                f'<text x="{ax}" y="{y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
+                f'<text x="{script_x}" y="{y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
                 f'font-size="14" font-weight="700" fill="{p["amber"]}">$</text>'
-                f'<text x="{ax+18}" y="{y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
+                f'<text x="{script_x+18}" y="{y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
                 f'font-size="14" font-weight="700" fill="{color}">{esc(text)}</text>'
                 f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.35s" fill="freeze"/>'
                 f'</g>'
@@ -103,44 +98,41 @@ def build(p, tag):
         else:
             nodes.append(
                 f'  <g opacity="0">'
-                f'<text x="{ax+18}" y="{y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
+                f'<text x="{script_x+18}" y="{y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
                 f'font-size="14" font-weight="500" fill="{color}">{esc(text)}</text>'
                 f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.35s" fill="freeze"/>'
                 f'</g>'
             )
     script_block = "\n".join(nodes)
 
-    # ---- ASCII art lines with reveal + persistent pulse ----
-    ascii_nodes = []
-    for i, l in enumerate(ASCII):
-        y = ay + i * ch + ch * 0.82
-        b = 0.2 + i * 0.12
+    # ---- V logo lines with reveal + persistent pulse ----
+    v_nodes = []
+    for i, l in enumerate(ASCII_V):
+        y = logo_ay + i * logo_ch + logo_ch * 0.82
+        b = 0.2 + i * 0.18
         glow_dur = 3.6 + i * 0.4
-        ascii_nodes.append(
-            f'      <text x="{ax}" y="{y:.1f}" '
+        v_nodes.append(
+            f'      <text x="{logo_ax}" y="{y:.1f}" '
             f'font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
-            f'font-size="12" font-weight="700" letter-spacing="0.5" '
+            f'font-size="{logo_font}" font-weight="700" letter-spacing="2" '
             f'fill="{p["fg"]}" opacity="0">{esc(l)}'
-            f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.45s" fill="freeze"/>'
+            f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>'
             f'<animate attributeName="opacity" values="1;0.55;1" begin="3s" '
             f'dur="{glow_dur:.1f}s" repeatCount="indefinite"/>'
             f'</text>'
         )
-    ascii_block = "\n".join(ascii_nodes)
+    v_block = "\n".join(v_nodes)
 
     # ---- scanlines ----
     scanlines = [f'<rect x="0" y="{y}" width="{W}" height="1" fill="{p["scan"]}"/>' for y in range(0, H, 3)]
     scan_block = "\n".join(scanlines)
 
-    # ---- prompt above ASCII ----
-    prompt_y = ay - 14
-
-    # ---- ls prompt label + stack tags ----
-    ls_y = ty + len(script) * line_step + 28
+    # ---- $ ls prompt label + stack tags (below the script) ----
+    ls_y = script_first_y + len(script) * line_step + 22
     tag_y = ls_y + 20
     tags = ["python", "pandas", "sklearn", "pycaret", "rust", "lua", "linux"]
     tag_nodes = []
-    cx = ax
+    cx = script_x
     for i, t in enumerate(tags):
         label = f"[{t}]"
         w = len(label) * 8.4 + 6
@@ -170,7 +162,7 @@ def build(p, tag):
       <stop offset="1" stop-color="#000000" stop-opacity="{0.55 if tag=='dark' else 0.10}"/>
     </radialGradient>
     <filter id="bloom" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feGaussianBlur stdDeviation="5" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
@@ -181,59 +173,52 @@ def build(p, tag):
   <rect width="{W}" height="{H}" fill="url(#bg)"/>
 
   <g filter="url(#soft)" opacity="0.40">
-    <circle cx="160" cy="300" r="120" fill="{p["accent"]}">
-      <animate attributeName="cx" values="160;240;160" dur="18s" repeatCount="indefinite"/>
+    <circle cx="160" cy="240" r="110" fill="{p["accent"]}">
+      <animate attributeName="cx" values="160;220;160" dur="18s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="780" cy="220" r="100" fill="{p["amber"]}" opacity="0.7">
+    <circle cx="780" cy="180" r="90" fill="{p["amber"]}" opacity="0.7">
       <animate attributeName="cx" values="780;700;780" dur="22s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="600" cy="480" r="90" fill="{p["accent3"]}" opacity="0.5">
-      <animate attributeName="cy" values="480;450;480" dur="12s" repeatCount="indefinite"/>
+    <circle cx="600" cy="360" r="80" fill="{p["accent3"]}" opacity="0.5">
+      <animate attributeName="cy" values="360;330;360" dur="12s" repeatCount="indefinite"/>
     </circle>
   </g>
 
-  <rect x="{panel_x}" y="{panel_y}" width="{panel_w:.0f}" height="{panel_h:.0f}" rx="12"
+  <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="{panel_h}" rx="12"
         fill="{p["panel"]}" stroke="{p["panel_edge"]}" stroke-width="1.5"/>
-  <rect x="{panel_x}" y="{panel_y}" width="{panel_w:.0f}" height="28" rx="12" fill="#000000" opacity="0.55"/>
-  <rect x="{panel_x}" y="{panel_y+22}" width="{panel_w:.0f}" height="6" fill="#000000" opacity="0.55"/>
+  <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="28" rx="12" fill="#000000" opacity="0.55"/>
+  <rect x="{panel_x}" y="{panel_y+22}" width="{panel_w}" height="6" fill="#000000" opacity="0.55"/>
   <circle cx="{panel_x+18}" cy="{panel_y+15}" r="5" fill="#ff5f57"/>
   <circle cx="{panel_x+36}" cy="{panel_y+15}" r="5" fill="#febc2e"/>
   <circle cx="{panel_x+54}" cy="{panel_y+15}" r="5" fill="#28c840"/>
   <text x="{panel_x+78}" y="{panel_y+20}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["muted"]}">blackwall@localhost: ~</text>
-  <circle cx="{panel_x+panel_w-22:.0f}" cy="{panel_y+15}" r="4" fill="#ff3b30">
+  <circle cx="{panel_x+panel_w-22}" cy="{panel_y+15}" r="4" fill="#ff3b30">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
 
-  <!-- prompt above ASCII -->
-  <text x="{ax}" y="{prompt_y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
-        font-size="13" font-weight="700" fill="{p["amber"]}">$ figlet Blackwall-V</text>
-  <rect x="{ax+170}" y="{prompt_y-12}" width="9" height="14" fill="{p["amber"]}">
-    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.49;0.5;1" dur="1s" repeatCount="indefinite"/>
-  </rect>
-
-  <!-- ASCII art with bloom -->
+  <!-- large V logo on the left -->
   <g filter="url(#bloom)">
-{ascii_block}
+{v_block}
   </g>
 
-  <!-- divider under ASCII -->
-  <line x1="{ax}" y1="{div_y}" x2="{panel_x+panel_w-20:.0f}" y2="{div_y}"
-        stroke="{p["accent"]}" stroke-width="1" opacity="0.5">
-    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="4s" repeatCount="indefinite"/>
+  <!-- vertical divider between logo and script -->
+  <line x1="{right_x-20}" y1="{logo_ay-10}" x2="{right_x-20}" y2="{logo_ay+logo_h+10}"
+        stroke="{p["accent"]}" stroke-width="1" opacity="0.4">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/>
   </line>
 
-  <!-- typed script -->
+  <!-- typed script on the right -->
 {script_block}
 
   <!-- $ ls ./stack label -->
-  <text x="{ax}" y="{ls_y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="{script_x}" y="{ls_y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="13" font-weight="700" fill="{p["muted"]}">$ ls ./stack</text>
 {tags_block}
 
   <!-- status bar -->
-  <rect x="{panel_x}" y="{status_y}" width="{panel_w:.0f}" height="26" fill="#000000" opacity="0.5"/>
-  <rect x="{panel_x}" y="{status_y}" width="{panel_w:.0f}" height="26" fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
+  <rect x="{panel_x}" y="{status_y}" width="{panel_w}" height="26" fill="#000000" opacity="0.5"/>
+  <rect x="{panel_x}" y="{status_y}" width="{panel_w}" height="26" fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
   <circle cx="{panel_x+18}" cy="{status_y+13}" r="4" fill="#28c840">
     <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
@@ -241,7 +226,7 @@ def build(p, tag):
         font-size="11" fill="{p["accent"]}">online</text>
   <text x="{panel_x+90}" y="{status_y+17}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["muted"]}">| branch: main | utf-8 | RETRO-OS v1.0</text>
-  <text x="{panel_x+panel_w-18:.0f}" y="{status_y+17}" text-anchor="end"
+  <text x="{panel_x+panel_w-18}" y="{status_y+17}" text-anchor="end"
         font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["amber"]}">github.com/Blackwall-V</text>
 
