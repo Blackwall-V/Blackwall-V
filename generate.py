@@ -44,7 +44,7 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 940, 480
+    W, H = 1000, 480
 
     # ---- left side: large V logo ----
     # 6 lines, max 13 chars, at font-size 44, ch≈52, cw≈26
