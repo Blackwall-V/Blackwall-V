@@ -4,6 +4,14 @@ GitHub profile. Pure SVG + SMIL only — no CSS, HTML, or script.
 
 Layout: a large block "V" logo on the left, terminal content on the right.
 Canvas stays at 940px wide. ASCII art is the "V" character rendered large.
+
+NOTE on the fix: the previous version broke because the V-logo <text>
+elements had letter-spacing="2". Box-drawing glyphs (╗ ╔ ╚ ╝ ║ ═) are drawn
+to tile edge-to-edge with the full-block glyph (█) — zero gap. Adding
+letter-spacing pushes every character apart, so the corner/hook strokes
+detach visually from the blocks next to them. That's the "extra lines
+sticking out" artifact. Removing letter-spacing (and using real monospace
+metrics for layout) fixes it while keeping the ASCII art itself.
 """
 import os
 
@@ -13,12 +21,12 @@ os.makedirs(ASSETS, exist_ok=True)
 
 # Large block "V" logo (6 lines, rendered at large font-size)
 ASCII_V = [
-    "██╗   ██╗",
+    "    ██╗   ██╗",
     "    ██║   ██║",
     "    ██║   ██║",
     "    ╚██╗ ██╔╝",
     "     ╚████╔╝",
-    "      ╚═══╝",
+    "      ╚══╝",
 ]
 
 DARK = dict(
@@ -44,15 +52,17 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 940, 480
+    W, H = 960, 480
 
     # ---- left side: large V logo ----
-    # 6 lines, max 13 chars, at font-size 44, ch≈52, cw≈26
-    logo_font = 44
-    logo_ch = 52
-    logo_cw = 26
-    logo_w = max(len(l) for l in ASCII_V) * logo_cw  # ~338
-    logo_h = len(ASCII_V) * logo_ch                  # ~312
+    # Real monospace metrics: char width ≈ 0.6 * font-size, line-height ≈ 1.25 * font-size.
+    # These are only used for LAYOUT (divider / right-column position) — the
+    # actual glyph rendering is untouched (no letter-spacing).
+    logo_font = 30
+    logo_cw = round(logo_font * 0.6)     # ≈ 18
+    logo_ch = round(logo_font * 1.25)    # ≈ 38
+    logo_w = max(len(l) for l in ASCII_V) * logo_cw
+    logo_h = len(ASCII_V) * logo_ch
 
     # ---- panel & layout ----
     panel_x, panel_y = 22, 50
@@ -60,10 +70,11 @@ def build(p, tag):
     panel_h = H - panel_y - 18
 
     logo_ax = 60          # left padding from panel
-    logo_ay = 100         # below title bar
+    content_top = panel_y + 34       # below title bar
+    content_bottom = H - 40 - 14      # above status bar
+    logo_ay = content_top + (content_bottom - content_top - logo_h) / 2
 
     # ---- right side: terminal content ----
-    # script: 7 lines, compact
     script = [
         (True,  "whoami",                                   p["accent"]),
         (False, "blackwall-v — data/ML engineer",            p["fg"]),
@@ -74,8 +85,10 @@ def build(p, tag):
         (False, "open to collaboration",                    p["accent3"]),
     ]
 
-    # right column starts after the logo
-    right_x = logo_ax + logo_w + 40   # gap between logo and script
+    right_x = logo_ax + logo_w + 40   # gap between logo and script (base calc)
+    left_block_start = panel_x + 20
+    left_block_end = right_x - 20
+    logo_ax = left_block_start + (left_block_end - left_block_start - logo_w) / 2
     script_x = right_x
     script_first_y = logo_ay + 12
     line_step = 22
@@ -106,15 +119,16 @@ def build(p, tag):
     script_block = "\n".join(nodes)
 
     # ---- V logo lines with reveal + persistent pulse ----
+    # xml:space="preserve" keeps leading spaces; NO letter-spacing (see note above).
     v_nodes = []
     for i, l in enumerate(ASCII_V):
         y = logo_ay + i * logo_ch + logo_ch * 0.82
         b = 0.2 + i * 0.18
         glow_dur = 3.6 + i * 0.4
         v_nodes.append(
-            f'      <text x="{logo_ax}" y="{y:.1f}" '
+            f'      <text x="{logo_ax}" y="{y:.1f}" xml:space="preserve" '
             f'font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
-            f'font-size="{logo_font}" font-weight="700" letter-spacing="2" '
+            f'font-size="{logo_font}" font-weight="700" '
             f'fill="{p["fg"]}" opacity="0">{esc(l)}'
             f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>'
             f'<animate attributeName="opacity" values="1;0.55;1" begin="3s" '
