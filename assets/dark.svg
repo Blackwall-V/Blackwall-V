@@ -20,10 +20,8 @@
     </filter>
   </defs>
 
-  <!-- background -->
   <rect width="820" height="420" fill="url(#bg)"/>
 
-  <!-- drifting phosphor glow blobs -->
   <g filter="url(#soft)" opacity="0.40">
     <circle cx="160" cy="220" r="110" fill="#39ff14">
       <animate attributeName="cx" values="160;220;160" dur="18s" repeatCount="indefinite"/>
@@ -36,10 +34,8 @@
     </circle>
   </g>
 
-  <!-- CRT panel -->
   <rect x="24" y="40" width="772" height="362" rx="12"
         fill="#08120a" stroke="rgba(60,200,90,0.30)" stroke-width="1.5"/>
-  <!-- title bar -->
   <rect x="24" y="40" width="772" height="28" rx="12" fill="#000000" opacity="0.55"/>
   <rect x="24" y="62" width="772" height="6" fill="#000000" opacity="0.55"/>
   <circle cx="42" cy="55" r="5" fill="#ff5f57"/>
@@ -47,28 +43,24 @@
   <circle cx="78" cy="55" r="5" fill="#28c840"/>
   <text x="102" y="60" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#5a8f72">blackwall@localhost: ~</text>
-  <!-- blinking REC dot -->
   <circle cx="774" cy="55" r="4" fill="#ff3b30">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
 
-  <!-- title -->
   <text x="48" y="64" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="18" font-weight="700" fill="#39ff14" filter="url(#bloom)">blackwall-v</text>
   <rect x="48" y="72" width="120" height="2" fill="#39ff14" opacity="0.6">
     <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- typed script -->
   <g opacity="0"><text x="56" y="92" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#ffb454">$</text><text x="76" y="92" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#39ff14">whoami</text><animate attributeName="opacity" from="0" to="1" begin="0.40s" dur="0.35s" fill="freeze"/></g>
   <g opacity="0"><text x="76" y="120" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="500" fill="#7dffb0">blackwall-v  —  data scientist / ml engineer</text><animate attributeName="opacity" from="0" to="1" begin="1.50s" dur="0.35s" fill="freeze"/></g>
   <g opacity="0"><text x="56" y="148" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#ffb454">$</text><text x="76" y="148" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#39ff14">cat stack.txt</text><animate attributeName="opacity" from="0" to="1" begin="2.60s" dur="0.35s" fill="freeze"/></g>
   <g opacity="0"><text x="76" y="176" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="500" fill="#7dffb0">python · pandas · scikit-learn · pycaret</text><animate attributeName="opacity" from="0" to="1" begin="3.70s" dur="0.35s" fill="freeze"/></g>
   <g opacity="0"><text x="76" y="204" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="500" fill="#7dffb0">rust · lua · linux</text><animate attributeName="opacity" from="0" to="1" begin="4.80s" dur="0.35s" fill="freeze"/></g>
   <g opacity="0"><text x="56" y="232" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#ffb454">$</text><text x="76" y="232" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#39ff14">echo $STATUS</text><animate attributeName="opacity" from="0" to="1" begin="5.90s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="76" y="260" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="500" fill="#5fd0ff">► open to collaboration</text><animate attributeName="opacity" from="0" to="1" begin="7.00s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="76" y="260" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="500" fill="#5fd0ff">open to collaboration</text><animate attributeName="opacity" from="0" to="1" begin="7.00s" dur="0.35s" fill="freeze"/></g>
 
-  <!-- role typing prompt + cycling roles -->
   <text x="56" y="300" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="15" font-weight="700" fill="#ffb454">$</text>
   <rect x="66" y="286" width="9" height="17" fill="#39ff14" opacity="0">
@@ -79,7 +71,6 @@
   <text x="76" y="300" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#5fd0ff" opacity="0">python_dev<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.5001;0.7308;0.7462;1" dur="10.4s" repeatCount="indefinite"/></text>
   <text x="76" y="300" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#5fd0ff" opacity="0">open_source<animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.7501;0.9808;0.9962;1" dur="10.4s" repeatCount="indefinite"/></text>
 
-  <!-- status bar -->
   <rect x="24" y="376" width="772" height="26" fill="#000000" opacity="0.5"/>
   <rect x="24" y="376" width="772" height="26" fill="none" stroke="rgba(60,200,90,0.30)" stroke-width="1"/>
   <circle cx="42" cy="389" r="4" fill="#28c840">
@@ -93,7 +84,6 @@
         font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#ffb454">github.com/Blackwall-V</text>
 
-  <!-- scanlines -->
   <g opacity="0.9">
 <rect x="0" y="0" width="820" height="1" fill="rgba(80,255,120,0.05)"/>
 <rect x="0" y="3" width="820" height="1" fill="rgba(80,255,120,0.05)"/>
@@ -237,12 +227,10 @@
 <rect x="0" y="417" width="820" height="1" fill="rgba(80,255,120,0.05)"/>
   </g>
 
-  <!-- moving scan beam -->
   <rect x="0" y="0" width="820" height="3" fill="#39ff14" opacity="0.08">
     <animate attributeName="y" values="0;420;0" dur="9s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="0;0.18;0" dur="9s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- vignette -->
   <rect width="820" height="420" fill="url(#vignette)"/>
 </svg>

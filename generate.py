@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""Generate two simple RETRO animated SVGs (dark.svg, light.svg) for the
-Blackwall-V GitHub profile. Pure SVG + SMIL only — no CSS, HTML, or script.
-Centerpiece: an animated terminal typing shell commands + output (no ASCII art)."""
+"""Generate two RETRO animated SVGs (dark.svg, light.svg) for the Blackwall-V
+GitHub profile. Pure SVG + SMIL only — no CSS, HTML, or script.
+
+Centerpiece: an animated CRT terminal that types shell commands + output
+(whoami, cat stack.txt, echo $STATUS), then cycles a role tagline.
+No ASCII art, no logos. Single-file, deterministic, GitHub-compatible.
+"""
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -36,16 +40,15 @@ def build(p, tag):
     panel_w = W - 48
     panel_h = H - panel_y - 18
 
-    # Terminal script: (prompt?, text, color, is_command)
-    # is_command True -> amber $ prompt + typed char-by-char feel via opacity window
+    # (is_command, text, color)
     script = [
-        (True,  "whoami",                         p["accent"]),
+        (True,  "whoami",                                   p["accent"]),
         (False, "blackwall-v  —  data scientist / ml engineer", p["fg"]),
-        (True,  "cat stack.txt",                  p["accent"]),
-        (False, "python · pandas · scikit-learn · pycaret",     p["fg"]),
-        (False, "rust · lua · linux",             p["fg"]),
-        (True,  "echo $STATUS",                   p["accent"]),
-        (False, "► open to collaboration",        p["accent3"]),
+        (True,  "cat stack.txt",                            p["accent"]),
+        (False, "python · pandas · scikit-learn · pycaret", p["fg"]),
+        (False, "rust · lua · linux",                       p["fg"]),
+        (True,  "echo $STATUS",                             p["accent"]),
+        (False, "open to collaboration",                    p["accent3"]),
     ]
 
     line_h = 28
@@ -78,7 +81,7 @@ def build(p, tag):
             )
     script_block = "\n".join(nodes)
 
-    # tagline typing (cycling roles) under the script
+    # cycling role tagline
     roles = ["data_scientist", "ml_engineer", "python_dev", "open_source"]
     per = 2.6
     total = per * len(roles)
@@ -122,10 +125,8 @@ def build(p, tag):
     </filter>
   </defs>
 
-  <!-- background -->
   <rect width="{W}" height="{H}" fill="url(#bg)"/>
 
-  <!-- drifting phosphor glow blobs -->
   <g filter="url(#soft)" opacity="0.40">
     <circle cx="160" cy="220" r="110" fill="{p["accent"]}">
       <animate attributeName="cx" values="160;220;160" dur="18s" repeatCount="indefinite"/>
@@ -138,10 +139,8 @@ def build(p, tag):
     </circle>
   </g>
 
-  <!-- CRT panel -->
   <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="{panel_h}" rx="12"
         fill="{p["panel"]}" stroke="{p["panel_edge"]}" stroke-width="1.5"/>
-  <!-- title bar -->
   <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="28" rx="12" fill="#000000" opacity="0.55"/>
   <rect x="{panel_x}" y="{panel_y+22}" width="{panel_w}" height="6" fill="#000000" opacity="0.55"/>
   <circle cx="{panel_x+18}" cy="{panel_y+15}" r="5" fill="#ff5f57"/>
@@ -149,22 +148,18 @@ def build(p, tag):
   <circle cx="{panel_x+54}" cy="{panel_y+15}" r="5" fill="#28c840"/>
   <text x="{panel_x+78}" y="{panel_y+20}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["muted"]}">blackwall@localhost: ~</text>
-  <!-- blinking REC dot -->
   <circle cx="{panel_x+panel_w-22}" cy="{panel_y+15}" r="4" fill="#ff3b30">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
 
-  <!-- title -->
   <text x="{panel_x+24}" y="64" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="18" font-weight="700" fill="{p["accent"]}" filter="url(#bloom)">blackwall-v</text>
   <rect x="{panel_x+24}" y="72" width="120" height="2" fill="{p["accent"]}" opacity="0.6">
     <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- typed script -->
 {script_block}
 
-  <!-- role typing prompt + cycling roles -->
   <text x="56" y="{ty}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="15" font-weight="700" fill="{p["amber"]}">$</text>
   <rect x="66" y="{ty-14}" width="9" height="17" fill="{p["accent"]}" opacity="0">
@@ -172,7 +167,6 @@ def build(p, tag):
   </rect>
 {roles_block}
 
-  <!-- status bar -->
   <rect x="{panel_x}" y="{H-44}" width="{panel_w}" height="26" fill="#000000" opacity="0.5"/>
   <rect x="{panel_x}" y="{H-44}" width="{panel_w}" height="26" fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
   <circle cx="{panel_x+18}" cy="{H-31}" r="4" fill="#28c840">
@@ -186,18 +180,15 @@ def build(p, tag):
         font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["amber"]}">github.com/Blackwall-V</text>
 
-  <!-- scanlines -->
   <g opacity="0.9">
 {scan_block}
   </g>
 
-  <!-- moving scan beam -->
   <rect x="0" y="0" width="{W}" height="3" fill="{p["accent"]}" opacity="0.08">
     <animate attributeName="y" values="0;{H};0" dur="9s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="0;0.18;0" dur="9s" repeatCount="indefinite"/>
   </rect>
 
-  <!-- vignette -->
   <rect width="{W}" height="{H}" fill="url(#vignette)"/>
 </svg>
 """

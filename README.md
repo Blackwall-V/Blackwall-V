@@ -55,5 +55,5 @@ status: Open to collaboration
 </p>
 
 <p align="center">
-  <sub>Pure SVG · SMIL animations · glassmorphism · light &amp; dark aware · GitHub-compatible</sub>
+  <sub>Pure SVG · SMIL animations · light &amp; dark aware · GitHub-compatible</sub>
 </p>
