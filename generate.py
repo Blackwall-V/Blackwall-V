@@ -13,12 +13,12 @@ os.makedirs(ASSETS, exist_ok=True)
 
 # Large block "V" logo (6 lines, rendered at large font-size)
 ASCII_V = [
-    "██╗   ██╗",
+    "    ██╗   ██╗",
     "    ██║   ██║",
     "    ██║   ██║",
     "    ╚██╗ ██╔╝",
     "     ╚████╔╝",
-    "      ╚═══╝",
+    "      ╚══╝",
 ]
 
 DARK = dict(
