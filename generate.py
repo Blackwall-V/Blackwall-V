@@ -19,15 +19,15 @@ os.makedirs(ASSETS, exist_ok=True)
 
 # ASCII art hard-coded so the output is deterministic.
 ASCII = [
-    "_______  __                   __                             __ __ ",
-    "|       \\|  \\                 |  \\                           |  \\  \\",
-    "| ▓▓▓▓▓▓▓\\ ▓▓ ______   _______| ▓▓   __ __   __   __  ______ | ▓▓ ▓▓",
-    "| ▓▓__/ ▓▓ ▓▓|      \\ /       \\ ▓▓  /  \\  \\ |  \\ |  \\|      \\| ▓▓ ▓▓",
-    "| ▓▓    ▓▓ ▓▓ \\▓▓▓▓▓▓\\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓ ▓▓ | ▓▓ | ▓▓ \\▓▓▓▓▓▓\\ ▓▓ ▓▓",
-    "| ▓▓▓▓▓▓▓\\ ▓▓/      ▓▓ ▓▓     | ▓▓   ▓▓| ▓▓ | ▓▓ | ▓▓/      ▓▓ ▓▓ ▓▓",
-    "| ▓▓__/ ▓▓ ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\\| ▓▓_/ ▓▓_/ ▓▓  ▓▓▓▓▓▓▓ ▓▓ ▓▓",
-    "| ▓▓    ▓▓ ▓▓\\▓▓    ▓▓\\▓▓     \\ ▓▓  \\▓▓\\\\▓▓   ▓▓   ▓▓\\▓▓    ▓▓ ▓▓ ▓▓",
-    " \\▓▓▓▓▓▓▓ \\▓▓ \\▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓\\▓▓   \\▓▓ \\▓▓▓▓▓\\▓▓▓▓  \\▓▓▓▓▓▓▓\\▓▓\\▓▓",
+    "*@@@***@@m *@@@                   *@@@                                   *@@@   *@@@          *@@@@*   *@@@*  *@",
+    "  @@    @@   @@                     @@                                     @@     @@            *@@     m@    m@",
+    "  @@    @@   @@   m@*@@m   m@@*@@   @@  m@@* *@@*    m@    *@@* m@*@@m     @@     @@             @@m   m@     *@",
+    "  @@***@mm   !@  @@   @@  @@*  @@   @@ m@      @@   m@@@   m@  @@   @@     !@     !@              @@m  @*     m@",
+    "  @!    *@   !@   m@@@!@  @!        !@m@@       @@ m@  @@ m@    m@@@!@     !@     !@    @@@@@     *!@ !*      *@",
+    "  !!    m@   !@  @!   !@  @!m    m  !@ *@@m      @@@    @!!    @!   !@     !@     !@               !@@m      m@",
+    "  !:    *!   !!   !!!!:!  !!        !!!!!        !@!!   !:!     !!!!:!     !!     !!               !! !*      *@",
+    "  !:    !!   :!  !!   :!  !:!    !  :! *!!!      !!!    !:!    !!   :!     :!     :!               !!::     :@",
+    ": !: : : : : : :!: : !:  : : :  : : :  : :      :      :     :!: : !:  : : :  : : :               :       ::",
 ]
 
 DARK = dict(
@@ -53,21 +53,21 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 940, 640
+    W, H = 940, 600
 
     # ---- compute ASCII dimensions ----
-    # block chars are roughly square; at font-size 14 monospace, advance ~8.4px
-    cw, ch = 8.4, 20
+    # at font-size 12 monospace, advance ~7.2px
+    cw, ch = 7.2, 17
     ascii_w = max(len(l) for l in ASCII) * cw
     ascii_h = len(ASCII) * ch
 
     # ---- panel & ASCII placement (padding around the figlet) ----
     panel_x, panel_y = 22, 50
-    panel_w = ascii_w + 84           # ~46px right padding
+    panel_w = ascii_w + 84
     panel_h = H - panel_y - 18
 
-    ax = 60                          # ~38px left padding from panel
-    ay = 108                         # below title bar with padding
+    ax = 60
+    ay = 108
 
     # ---- typed script (compact, 5 lines) ----
     script = [
@@ -119,7 +119,7 @@ def build(p, tag):
         ascii_nodes.append(
             f'      <text x="{ax}" y="{y:.1f}" '
             f'font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
-            f'font-size="14" font-weight="700" letter-spacing="0.5" '
+            f'font-size="12" font-weight="700" letter-spacing="0.5" '
             f'fill="{p["fg"]}" opacity="0">{esc(l)}'
             f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.45s" fill="freeze"/>'
             f'<animate attributeName="opacity" values="1;0.55;1" begin="3s" '

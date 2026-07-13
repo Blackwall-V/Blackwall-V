@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 640" width="940" height="640"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 600" width="940" height="600"
      role="img" aria-label="Blackwall-V retro terminal (light)">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
@@ -20,7 +20,7 @@
     </filter>
   </defs>
 
-  <rect width="940" height="640" fill="url(#bg)"/>
+  <rect width="940" height="600" fill="url(#bg)"/>
 
   <g filter="url(#soft)" opacity="0.40">
     <circle cx="160" cy="300" r="120" fill="#0a7d28">
@@ -34,16 +34,16 @@
     </circle>
   </g>
 
-  <rect x="22" y="50" width="655" height="572" rx="12"
+  <rect x="22" y="50" width="890" height="532" rx="12"
         fill="#1a2418" stroke="rgba(20,40,24,0.45)" stroke-width="1.5"/>
-  <rect x="22" y="50" width="655" height="28" rx="12" fill="#000000" opacity="0.55"/>
-  <rect x="22" y="72" width="655" height="6" fill="#000000" opacity="0.55"/>
+  <rect x="22" y="50" width="890" height="28" rx="12" fill="#000000" opacity="0.55"/>
+  <rect x="22" y="72" width="890" height="6" fill="#000000" opacity="0.55"/>
   <circle cx="40" cy="65" r="5" fill="#ff5f57"/>
   <circle cx="58" cy="65" r="5" fill="#febc2e"/>
   <circle cx="76" cy="65" r="5" fill="#28c840"/>
   <text x="100" y="70" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#4a6b58">blackwall@localhost: ~</text>
-  <circle cx="655" cy="65" r="4" fill="#ff3b30">
+  <circle cx="890" cy="65" r="4" fill="#ff3b30">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
 
@@ -56,54 +56,54 @@
 
   <!-- ASCII art with bloom -->
   <g filter="url(#bloom)">
-      <text x="60" y="124.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">_______  __                   __                             __ __ <animate attributeName="opacity" from="0" to="1" begin="0.20s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="3.6s" repeatCount="indefinite"/></text>
-      <text x="60" y="144.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">|       \|  \                 |  \                           |  \  \<animate attributeName="opacity" from="0" to="1" begin="0.32s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.0s" repeatCount="indefinite"/></text>
-      <text x="60" y="164.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">| ▓▓▓▓▓▓▓\ ▓▓ ______   _______| ▓▓   __ __   __   __  ______ | ▓▓ ▓▓<animate attributeName="opacity" from="0" to="1" begin="0.44s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.4s" repeatCount="indefinite"/></text>
-      <text x="60" y="184.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">| ▓▓__/ ▓▓ ▓▓|      \ /       \ ▓▓  /  \  \ |  \ |  \|      \| ▓▓ ▓▓<animate attributeName="opacity" from="0" to="1" begin="0.56s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.8s" repeatCount="indefinite"/></text>
-      <text x="60" y="204.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">| ▓▓    ▓▓ ▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓ ▓▓ | ▓▓ | ▓▓ \▓▓▓▓▓▓\ ▓▓ ▓▓<animate attributeName="opacity" from="0" to="1" begin="0.68s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.2s" repeatCount="indefinite"/></text>
-      <text x="60" y="224.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">| ▓▓▓▓▓▓▓\ ▓▓/      ▓▓ ▓▓     | ▓▓   ▓▓| ▓▓ | ▓▓ | ▓▓/      ▓▓ ▓▓ ▓▓<animate attributeName="opacity" from="0" to="1" begin="0.80s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.6s" repeatCount="indefinite"/></text>
-      <text x="60" y="244.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">| ▓▓__/ ▓▓ ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\| ▓▓_/ ▓▓_/ ▓▓  ▓▓▓▓▓▓▓ ▓▓ ▓▓<animate attributeName="opacity" from="0" to="1" begin="0.92s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="6.0s" repeatCount="indefinite"/></text>
-      <text x="60" y="264.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">| ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\\▓▓   ▓▓   ▓▓\▓▓    ▓▓ ▓▓ ▓▓<animate attributeName="opacity" from="0" to="1" begin="1.04s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="6.4s" repeatCount="indefinite"/></text>
-      <text x="60" y="284.4" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0"> \▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓ \▓▓▓▓▓\▓▓▓▓  \▓▓▓▓▓▓▓\▓▓\▓▓<animate attributeName="opacity" from="0" to="1" begin="1.16s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="6.8s" repeatCount="indefinite"/></text>
+      <text x="60" y="121.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">*@@@***@@m *@@@                   *@@@                                   *@@@   *@@@          *@@@@*   *@@@*  *@<animate attributeName="opacity" from="0" to="1" begin="0.20s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="3.6s" repeatCount="indefinite"/></text>
+      <text x="60" y="138.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  @@    @@   @@                     @@                                     @@     @@            *@@     m@    m@<animate attributeName="opacity" from="0" to="1" begin="0.32s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.0s" repeatCount="indefinite"/></text>
+      <text x="60" y="155.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  @@    @@   @@   m@*@@m   m@@*@@   @@  m@@* *@@*    m@    *@@* m@*@@m     @@     @@             @@m   m@     *@<animate attributeName="opacity" from="0" to="1" begin="0.44s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.4s" repeatCount="indefinite"/></text>
+      <text x="60" y="172.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  @@***@mm   !@  @@   @@  @@*  @@   @@ m@      @@   m@@@   m@  @@   @@     !@     !@              @@m  @*     m@<animate attributeName="opacity" from="0" to="1" begin="0.56s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.8s" repeatCount="indefinite"/></text>
+      <text x="60" y="189.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  @!    *@   !@   m@@@!@  @!        !@m@@       @@ m@  @@ m@    m@@@!@     !@     !@    @@@@@     *!@ !*      *@<animate attributeName="opacity" from="0" to="1" begin="0.68s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.2s" repeatCount="indefinite"/></text>
+      <text x="60" y="206.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  !!    m@   !@  @!   !@  @!m    m  !@ *@@m      @@@    @!!    @!   !@     !@     !@               !@@m      m@<animate attributeName="opacity" from="0" to="1" begin="0.80s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.6s" repeatCount="indefinite"/></text>
+      <text x="60" y="223.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  !:    *!   !!   !!!!:!  !!        !!!!!        !@!!   !:!     !!!!:!     !!     !!               !! !*      *@<animate attributeName="opacity" from="0" to="1" begin="0.92s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="6.0s" repeatCount="indefinite"/></text>
+      <text x="60" y="240.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">  !:    !!   :!  !!   :!  !:!    !  :! *!!!      !!!    !:!    !!   :!     :!     :!               !!::     :@<animate attributeName="opacity" from="0" to="1" begin="1.04s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="6.4s" repeatCount="indefinite"/></text>
+      <text x="60" y="257.9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="0.5" fill="#0a3d1f" opacity="0">: !: : : : : : :!: : !:  : : :  : : :  : :      :      :     :!: : !:  : : :  : : :               :       ::<animate attributeName="opacity" from="0" to="1" begin="1.16s" dur="0.45s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="6.8s" repeatCount="indefinite"/></text>
   </g>
 
   <!-- divider under ASCII -->
-  <line x1="60" y1="302" x2="657" y2="302"
+  <line x1="60" y1="275" x2="892" y2="275"
         stroke="#0a7d28" stroke-width="1" opacity="0.5">
     <animate attributeName="opacity" values="0.2;0.7;0.2" dur="4s" repeatCount="indefinite"/>
   </line>
 
   <!-- typed script -->
-  <g opacity="0"><text x="60" y="338" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#7a4d00">$</text><text x="78" y="338" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#0a7d28">whoami</text><animate attributeName="opacity" from="0" to="1" begin="0.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="78" y="360" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#0a3d1f">blackwall-v — data/ML engineer</text><animate attributeName="opacity" from="0" to="1" begin="1.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="60" y="382" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#7a4d00">$</text><text x="78" y="382" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#0a7d28">cat stack.txt</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="78" y="404" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#0a3d1f">python · pandas · sklearn · pycaret</text><animate attributeName="opacity" from="0" to="1" begin="3.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="78" y="426" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#0a3d1f">rust · lua · linux</text><animate attributeName="opacity" from="0" to="1" begin="4.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="60" y="448" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#7a4d00">$</text><text x="78" y="448" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#0a7d28">echo $STATUS</text><animate attributeName="opacity" from="0" to="1" begin="5.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="78" y="470" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#1a5a8a">open to collaboration</text><animate attributeName="opacity" from="0" to="1" begin="6.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="60" y="311" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#7a4d00">$</text><text x="78" y="311" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#0a7d28">whoami</text><animate attributeName="opacity" from="0" to="1" begin="0.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="78" y="333" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#0a3d1f">blackwall-v — data/ML engineer</text><animate attributeName="opacity" from="0" to="1" begin="1.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="60" y="355" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#7a4d00">$</text><text x="78" y="355" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#0a7d28">cat stack.txt</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="78" y="377" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#0a3d1f">python · pandas · sklearn · pycaret</text><animate attributeName="opacity" from="0" to="1" begin="3.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="78" y="399" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#0a3d1f">rust · lua · linux</text><animate attributeName="opacity" from="0" to="1" begin="4.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="60" y="421" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#7a4d00">$</text><text x="78" y="421" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#0a7d28">echo $STATUS</text><animate attributeName="opacity" from="0" to="1" begin="5.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="78" y="443" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#1a5a8a">open to collaboration</text><animate attributeName="opacity" from="0" to="1" begin="6.40s" dur="0.35s" fill="freeze"/></g>
 
   <!-- $ ls ./stack label -->
-  <text x="60" y="520" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="60" y="493" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="13" font-weight="700" fill="#4a6b58">$ ls ./stack</text>
-      <g opacity="0"><text x="60" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[python]</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="143.2" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[pandas]</text><animate attributeName="opacity" from="0" to="1" begin="2.52s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="226.39999999999998" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[sklearn]</text><animate attributeName="opacity" from="0" to="1" begin="2.64s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="318.0" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[pycaret]</text><animate attributeName="opacity" from="0" to="1" begin="2.76s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="409.6" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[rust]</text><animate attributeName="opacity" from="0" to="1" begin="2.88s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="476.0" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[lua]</text><animate attributeName="opacity" from="0" to="1" begin="3.00s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="534.0" y="540" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[linux]</text><animate attributeName="opacity" from="0" to="1" begin="3.12s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="60" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[python]</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="143.2" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[pandas]</text><animate attributeName="opacity" from="0" to="1" begin="2.52s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="226.39999999999998" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[sklearn]</text><animate attributeName="opacity" from="0" to="1" begin="2.64s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="318.0" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[pycaret]</text><animate attributeName="opacity" from="0" to="1" begin="2.76s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="409.6" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[rust]</text><animate attributeName="opacity" from="0" to="1" begin="2.88s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="476.0" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[lua]</text><animate attributeName="opacity" from="0" to="1" begin="3.00s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="534.0" y="513" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#7a4d00">[linux]</text><animate attributeName="opacity" from="0" to="1" begin="3.12s" dur="0.4s" fill="freeze"/></g>
 
   <!-- status bar -->
-  <rect x="22" y="600" width="655" height="26" fill="#000000" opacity="0.5"/>
-  <rect x="22" y="600" width="655" height="26" fill="none" stroke="rgba(20,40,24,0.45)" stroke-width="1"/>
-  <circle cx="40" cy="613" r="4" fill="#28c840">
+  <rect x="22" y="560" width="890" height="26" fill="#000000" opacity="0.5"/>
+  <rect x="22" y="560" width="890" height="26" fill="none" stroke="rgba(20,40,24,0.45)" stroke-width="1"/>
+  <circle cx="40" cy="573" r="4" fill="#28c840">
     <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
-  <text x="54" y="617" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="54" y="577" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#0a7d28">online</text>
-  <text x="112" y="617" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="112" y="577" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#4a6b58">| branch: main | utf-8 | RETRO-OS v1.0</text>
-  <text x="659" y="617" text-anchor="end"
+  <text x="894" y="577" text-anchor="end"
         font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#7a4d00">github.com/Blackwall-V</text>
 
@@ -309,28 +309,14 @@
 <rect x="0" y="591" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
 <rect x="0" y="594" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
 <rect x="0" y="597" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="600" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="603" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="606" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="609" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="612" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="615" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="618" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="621" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="624" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="627" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="630" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="633" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="636" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
-<rect x="0" y="639" width="940" height="1" fill="rgba(0,0,0,0.04)"/>
   </g>
 
   <!-- moving scan beam -->
   <rect x="0" y="0" width="940" height="3" fill="#0a7d28" opacity="0.08">
-    <animate attributeName="y" values="0;640;0" dur="9s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="0;600;0" dur="9s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="0;0.18;0" dur="9s" repeatCount="indefinite"/>
   </rect>
 
   <!-- vignette -->
-  <rect width="940" height="640" fill="url(#vignette)"/>
+  <rect width="940" height="600" fill="url(#vignette)"/>
 </svg>
