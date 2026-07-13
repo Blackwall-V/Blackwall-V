@@ -5,13 +5,11 @@ GitHub profile. Pure SVG + SMIL only — no CSS, HTML, or script.
 Centerpiece: animated CRT terminal with:
   - BLOCK ASCII art logo (BLACKWALL-V) at the top, with generous padding.
   - Typed shell-command script (whoami / cat stack / echo $STATUS).
-  - Typing line with cycling role tagline + blinking cursor.
   - Stack tags row.
   - Bottom status bar.
   - CRT background: drifting phosphor glow blobs, scanlines, scan beam, vignette.
 
-All layout is computed so vertical positions are separated by positive gaps:
-  panel top -> ASCII (with padding) -> divider -> typing -> $ ls prompt -> tags -> status bar
+All layout is computed so vertical positions are separated by positive gaps.
 """
 import os
 
@@ -21,12 +19,15 @@ os.makedirs(ASSETS, exist_ok=True)
 
 # ASCII art hard-coded so the output is deterministic.
 ASCII = [
-    "██████╗ ██╗      █████╗  ██████╗██╗  ██╗██╗    ██╗ █████╗ ██╗     ██╗",
-    "██╔══██╗██║     ██╔══██╗██╔════╝██║ ██╔╝██║    ██║██╔══██╗██║     ██║",
-    "██████╔╝██║     ███████║██║     █████╔╝ ██║ █╗ ██║███████║██║     ██║",
-    "██╔══██╗██║     ██╔══██║██║     ██╔═██╗ ██║███╗██║██╔══██║██║     ██║",
-    "██████╔╝███████╗██║  ██║╚██████╗██║  ██╗╚███╔███╔╝██║  ██║███████╗███████╗",
-    "╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝╚══════╝",
+    "_______  __                   __                             __ __ ",
+    "|       \\|  \\                 |  \\                           |  \\  \\",
+    "| ▓▓▓▓▓▓▓\\ ▓▓ ______   _______| ▓▓   __ __   __   __  ______ | ▓▓ ▓▓",
+    "| ▓▓__/ ▓▓ ▓▓|      \\ /       \\ ▓▓  /  \\  \\ |  \\ |  \\|      \\| ▓▓ ▓▓",
+    "| ▓▓    ▓▓ ▓▓ \\▓▓▓▓▓▓\\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓ ▓▓ | ▓▓ | ▓▓ \\▓▓▓▓▓▓\\ ▓▓ ▓▓",
+    "| ▓▓▓▓▓▓▓\\ ▓▓/      ▓▓ ▓▓     | ▓▓   ▓▓| ▓▓ | ▓▓ | ▓▓/      ▓▓ ▓▓ ▓▓",
+    "| ▓▓__/ ▓▓ ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\\| ▓▓_/ ▓▓_/ ▓▓  ▓▓▓▓▓▓▓ ▓▓ ▓▓",
+    "| ▓▓    ▓▓ ▓▓\\▓▓    ▓▓\\▓▓     \\ ▓▓  \\▓▓\\\\▓▓   ▓▓   ▓▓\\▓▓    ▓▓ ▓▓ ▓▓",
+    " \\▓▓▓▓▓▓▓ \\▓▓ \\▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓\\▓▓   \\▓▓ \\▓▓▓▓▓\\▓▓▓▓  \\▓▓▓▓▓▓▓\\▓▓\\▓▓",
 ]
 
 DARK = dict(
@@ -52,37 +53,37 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 940, 600
+    W, H = 940, 640
 
     # ---- compute ASCII dimensions ----
-    # block chars are roughly square; at font-size 16 monospace, advance ~9.6px
-    cw, ch = 9.6, 22
+    # block chars are roughly square; at font-size 14 monospace, advance ~8.4px
+    cw, ch = 8.4, 20
     ascii_w = max(len(l) for l in ASCII) * cw
     ascii_h = len(ASCII) * ch
 
     # ---- panel & ASCII placement (padding around the figlet) ----
     panel_x, panel_y = 22, 50
     panel_w = ascii_w + 84           # ~46px right padding
-    panel_h = H - panel_y - 18       # reaches near bottom (status bar lives inside)
+    panel_h = H - panel_y - 18
 
     ax = 60                          # ~38px left padding from panel
-    ay = 116                         # ~43px top padding below title bar (title bar = 28px from panel_y)
+    ay = 108                         # below title bar with padding
 
-    # ---- terminal script (typed commands + output) ----
-    # compact: 5 lines instead of 7
+    # ---- typed script (compact, 5 lines) ----
     script = [
-        (True,  "whoami",                          p["accent"]),
-        (False, "blackwall-v — data/ML engineer",  p["fg"]),
-        (True,  "cat stack.txt",                   p["accent"]),
-        (False, "python · pandas · sklearn · pycaret · rust · lua", p["fg"]),
-        (True,  "echo $STATUS",                    p["accent"]),
-        (False, "open to collaboration",           p["accent3"]),
+        (True,  "whoami",                                   p["accent"]),
+        (False, "blackwall-v — data/ML engineer",            p["fg"]),
+        (True,  "cat stack.txt",                            p["accent"]),
+        (False, "python · pandas · sklearn · pycaret",      p["fg"]),
+        (False, "rust · lua · linux",                       p["fg"]),
+        (True,  "echo $STATUS",                             p["accent"]),
+        (False, "open to collaboration",                    p["accent3"]),
     ]
 
     # ---- typed script positioning (clear of ASCII + divider) ----
     div_y = ay + ascii_h + 14
-    ty = div_y + 40                                          # 40px below divider
-    line_step = 22                                           # tight
+    ty = div_y + 36
+    line_step = 22
     begin = 0.4
     step = 1.0
     nodes = []
@@ -109,36 +110,18 @@ def build(p, tag):
             )
     script_block = "\n".join(nodes)
 
-    # ---- role typing (cycling) ----
-    roles = ["data_scientist", "ml_engineer", "python_dev", "open_source"]
-    per = 2.6
-    total = per * len(roles)
-    role_y = ty + len(script) * line_step + 36               # 36px below last script line
-    role_nodes = []
-    for i, w in enumerate(roles):
-        start = i * per
-        c = (start + per - 0.2) / total
-        d = (start + per - 0.04) / total
-        role_nodes.append(
-            f'  <text x="{ax+18}" y="{role_y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
-            f'font-size="14" font-weight="700" fill="{p["accent3"]}" opacity="0">{esc(w)}'
-            f'<animate attributeName="opacity" values="0;1;1;0;0" '
-            f'keyTimes="0;{start/total+0.0001:.4f};{c:.4f};{d:.4f};1" dur="{total}s" repeatCount="indefinite"/></text>'
-        )
-    roles_block = "\n".join(role_nodes)
-
     # ---- ASCII art lines with reveal + persistent pulse ----
     ascii_nodes = []
     for i, l in enumerate(ASCII):
         y = ay + i * ch + ch * 0.82
-        b = 0.2 + i * 0.13
-        glow_dur = 3.6 + i * 0.5
+        b = 0.2 + i * 0.12
+        glow_dur = 3.6 + i * 0.4
         ascii_nodes.append(
             f'      <text x="{ax}" y="{y:.1f}" '
             f'font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" '
-            f'font-size="16" font-weight="700" letter-spacing="1" '
+            f'font-size="14" font-weight="700" letter-spacing="0.5" '
             f'fill="{p["fg"]}" opacity="0">{esc(l)}'
-            f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.5s" fill="freeze"/>'
+            f'<animate attributeName="opacity" from="0" to="1" begin="{b:.2f}s" dur="0.45s" fill="freeze"/>'
             f'<animate attributeName="opacity" values="1;0.55;1" begin="3s" '
             f'dur="{glow_dur:.1f}s" repeatCount="indefinite"/>'
             f'</text>'
@@ -153,7 +136,7 @@ def build(p, tag):
     prompt_y = ay - 14
 
     # ---- ls prompt label + stack tags ----
-    ls_y = role_y + 30
+    ls_y = ty + len(script) * line_step + 28
     tag_y = ls_y + 20
     tags = ["python", "pandas", "sklearn", "pycaret", "rust", "lua", "linux"]
     tag_nodes = []
@@ -171,7 +154,6 @@ def build(p, tag):
         cx += w + 10
     tags_block = "\n".join(tag_nodes)
 
-    # status bar at the very bottom
     status_y = H - 40
 
     return f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -188,7 +170,7 @@ def build(p, tag):
       <stop offset="1" stop-color="#000000" stop-opacity="{0.55 if tag=='dark' else 0.10}"/>
     </radialGradient>
     <filter id="bloom" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feGaussianBlur stdDeviation="4" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
@@ -199,14 +181,14 @@ def build(p, tag):
   <rect width="{W}" height="{H}" fill="url(#bg)"/>
 
   <g filter="url(#soft)" opacity="0.40">
-    <circle cx="160" cy="260" r="120" fill="{p["accent"]}">
+    <circle cx="160" cy="300" r="120" fill="{p["accent"]}">
       <animate attributeName="cx" values="160;240;160" dur="18s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="780" cy="200" r="100" fill="{p["amber"]}" opacity="0.7">
+    <circle cx="780" cy="220" r="100" fill="{p["amber"]}" opacity="0.7">
       <animate attributeName="cx" values="780;700;780" dur="22s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="600" cy="420" r="90" fill="{p["accent3"]}" opacity="0.5">
-      <animate attributeName="cy" values="420;390;420" dur="12s" repeatCount="indefinite"/>
+    <circle cx="600" cy="480" r="90" fill="{p["accent3"]}" opacity="0.5">
+      <animate attributeName="cy" values="480;450;480" dur="12s" repeatCount="indefinite"/>
     </circle>
   </g>
 
@@ -243,14 +225,6 @@ def build(p, tag):
 
   <!-- typed script -->
 {script_block}
-
-  <!-- role typing prompt -->
-  <text x="{ax}" y="{role_y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
-        font-size="14" font-weight="700" fill="{p["amber"]}">$</text>
-  <rect x="{ax+8}" y="{role_y-12}" width="9" height="16" fill="{p["accent"]}" opacity="0">
-    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="1.05s" repeatCount="indefinite"/>
-  </rect>
-{roles_block}
 
   <!-- $ ls ./stack label -->
   <text x="{ax}" y="{ls_y}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
