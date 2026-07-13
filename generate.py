@@ -44,16 +44,16 @@ def esc(s):
 
 
 def build(p, tag):
-    W, H = 940, 480
+    W, H = 940, 560
     cw, ch = 9.6, 22          # block chars are tall/wide
     ascii_w = max(len(l) for l in ASCII) * cw
     ascii_h = len(ASCII) * ch
     ax = 38
-    ay = 86
+    ay = 96
     panel_x = 22
     panel_y = 50
     panel_w = ascii_w + 36
-    panel_h = ascii_h + 70
+    panel_h = H - panel_y - 18  # tall panel reaching near bottom
 
     # ---- ASCII lines: per-line reveal + persistent phosphor glow pulse ----
     ascii_nodes = []
@@ -76,11 +76,11 @@ def build(p, tag):
     ascii_block = "\n".join(ascii_nodes)
 
     # ---- Typing effect via SMIL opacity cycling ----
-    words = ["> data_miner", "> ml_engineer", "> linux_ricer", "> rust_enjoyer"]
+    words = ["> data_scientist", "> ml_engineer", "> python_dev", "> open_source"]
     per = 2.6
     total = per * len(words)
     word_nodes = []
-    ty = 300
+    ty = ay + ascii_h + 64
     tx = 56
     for i, w in enumerate(words):
         start = i * per
@@ -99,9 +99,9 @@ def build(p, tag):
     typing_block = "\n".join(word_nodes)
 
     # ---- tech tags as bracketed tokens ----
-    tags = ["python", "pandas", "scikit-learn", "pycaret", "rust", "linux", "hyprland"]
+    tags = ["python", "pandas", "scikit-learn", "pycaret", "rust", "linux"]
     tx0 = 56
-    ty0 = 340
+    ty0 = ty + 52
     tag_nodes = []
     cx = tx0
     for i, t in enumerate(tags):
@@ -212,21 +212,21 @@ def build(p, tag):
 {typing_block}
 
   <!-- tags -->
-  <text x="38" y="{ty0-10}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="38" y="{ty0-18}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="13" font-weight="700" fill="{p["muted"]}">$ ls ./stack</text>
 {tags_block}
 
   <!-- status bar -->
-  <rect x="{panel_x}" y="{H-46}" width="{panel_w:.0f}" height="26" rx="0" fill="#000000" opacity="0.5"/>
-  <rect x="{panel_x}" y="{H-46}" width="{panel_w:.0f}" height="26" fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
-  <circle cx="{panel_x+18}" cy="{H-33}" r="4" fill="#28c840">
+  <rect x="{panel_x}" y="{H-40}" width="{panel_w:.0f}" height="26" rx="0" fill="#000000" opacity="0.5"/>
+  <rect x="{panel_x}" y="{H-40}" width="{panel_w:.0f}" height="26" fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
+  <circle cx="{panel_x+18}" cy="{H-27}" r="4" fill="#28c840">
     <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
-  <text x="{panel_x+32}" y="{H-29}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="{panel_x+32}" y="{H-23}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["accent"]}">online</text>
-  <text x="{panel_x+90}" y="{H-29}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="{panel_x+90}" y="{H-23}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["muted"]}">| branch: main | utf-8 | RETRO-OS v1.0</text>
-  <text x="{panel_x+panel_w-18:.0f}" y="{H-29}" text-anchor="end"
+  <text x="{panel_x+panel_w-18:.0f}" y="{H-23}" text-anchor="end"
         font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="{p["amber"]}">github.com/Blackwall-V</text>
 

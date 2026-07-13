@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="assets/light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/dark.svg">
-  <img alt="Blackwall-V animated banner" src="assets/dark.svg" width="840">
+  <img alt="Blackwall-V animated banner" src="assets/dark.svg" width="940">
 </picture>
 
 ### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Technologist.png" width="22"> About
@@ -10,8 +10,8 @@
 name: Blackwall-V
 role: Data Scientist | ML Engineer
 location: Chile
-focus: Hospital bed occupancy prediction · CRISP-DM · PyCaret
-stack: Python, Rust, Lua, Linux, Hyprland
+focus: Applied machine learning · CRISP-DM · PyCaret · open data
+stack: Python, Rust, Lua, Linux
 status: Open to collaboration
 ```
 
@@ -43,10 +43,10 @@ status: Open to collaboration
 ### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Sparkles.png" width="22"> Pinned
 
 <!-- HOTLIST:START -->
-- **[Data_Mining](https://github.com/Blackwall-V/Data_Mining)** — Supervised regression for hospital bed occupancy (MINSAL REM 20, 159K records).
+- **[Data_Mining](https://github.com/Blackwall-V/Data_Mining)** — Supervised regression on public health data (CRISP-DM pipeline, 159K records).
 - **[Rem-20-pycaret](https://github.com/Blackwall-V/Rem-20-pycaret)** — PyCaret experiments on REM-20 data.
-- **[DotFiles](https://github.com/Blackwall-V/DotFiles)** — Hyprland ecosystem + waybar.
 - **[mp3-converter-](https://github.com/Blackwall-V/mp3-converter-)** — Python audio converter.
+- **[bug-free-tribble-csv](https://github.com/Blackwall-V/bug-free-tribble-csv)** — AI-generated CSV for ML testing.
 <!-- HOTLIST:END -->
 
 <p align="center">
