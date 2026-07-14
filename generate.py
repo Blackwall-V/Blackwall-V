@@ -65,9 +65,11 @@ def build(p, tag):
     logo_h = len(ASCII_V) * logo_ch
 
     # ---- panel & layout ----
-    panel_x, panel_y = 22, 50
-    panel_w = W - 44
-    panel_h = H - panel_y - 18
+    margin = 10
+    panel_x, panel_y = margin, margin
+    panel_w = W - margin * 2
+    panel_h = H - margin * 2
+    panel_rx = 10  # outer clip rx (20) - margin (10) = concentric curve
 
     logo_ax = 60          # left padding from panel
     content_top = panel_y + 34       # below title bar
@@ -160,12 +162,16 @@ def build(p, tag):
         cx += w + 10
     tags_block = "\n".join(tag_nodes)
 
-    status_y = H - 40
+    status_bar_h = 26
+    status_y = panel_y + panel_h - status_bar_h
 
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}"
      role="img" aria-label="Blackwall-V retro terminal ({tag})">
   <defs>
+    <clipPath id="canvasClip">
+      <rect width="{W}" height="{H}" rx="20" ry="20"/>
+    </clipPath>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="{p["bg1"]}"/>
       <stop offset="0.5" stop-color="{p["bg0"]}"/>
@@ -184,6 +190,7 @@ def build(p, tag):
     </filter>
   </defs>
 
+  <g clip-path="url(#canvasClip)">
   <rect width="{W}" height="{H}" fill="url(#bg)"/>
 
   <g filter="url(#soft)" opacity="0.40">
@@ -198,9 +205,9 @@ def build(p, tag):
     </circle>
   </g>
 
-  <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="{panel_h}" rx="12"
+  <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="{panel_h}" rx="{panel_rx}"
         fill="{p["panel"]}" stroke="{p["panel_edge"]}" stroke-width="1.5"/>
-  <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="28" rx="12" fill="#000000" opacity="0.55"/>
+  <rect x="{panel_x}" y="{panel_y}" width="{panel_w}" height="28" rx="{panel_rx}" fill="#000000" opacity="0.55"/>
   <rect x="{panel_x}" y="{panel_y+22}" width="{panel_w}" height="6" fill="#000000" opacity="0.55"/>
   <circle cx="{panel_x+18}" cy="{panel_y+15}" r="5" fill="#ff5f57"/>
   <circle cx="{panel_x+36}" cy="{panel_y+15}" r="5" fill="#febc2e"/>
@@ -231,8 +238,10 @@ def build(p, tag):
 {tags_block}
 
   <!-- status bar -->
-  <rect x="{panel_x}" y="{status_y}" width="{panel_w}" height="26" fill="#000000" opacity="0.5"/>
-  <rect x="{panel_x}" y="{status_y}" width="{panel_w}" height="26" fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
+  <path d="M {panel_x} {status_y} H {panel_x+panel_w} V {panel_y+panel_h-panel_rx} Q {panel_x+panel_w} {panel_y+panel_h} {panel_x+panel_w-panel_rx} {panel_y+panel_h} H {panel_x+panel_rx} Q {panel_x} {panel_y+panel_h} {panel_x} {panel_y+panel_h-panel_rx} Z"
+        fill="#000000" opacity="0.5"/>
+  <path d="M {panel_x} {status_y} H {panel_x+panel_w} V {panel_y+panel_h-panel_rx} Q {panel_x+panel_w} {panel_y+panel_h} {panel_x+panel_w-panel_rx} {panel_y+panel_h} H {panel_x+panel_rx} Q {panel_x} {panel_y+panel_h} {panel_x} {panel_y+panel_h-panel_rx} Z"
+        fill="none" stroke="{p["panel_edge"]}" stroke-width="1"/>
   <circle cx="{panel_x+18}" cy="{status_y+13}" r="4" fill="#28c840">
     <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
@@ -257,6 +266,7 @@ def build(p, tag):
 
   <!-- vignette -->
   <rect width="{W}" height="{H}" fill="url(#vignette)"/>
+  </g>
 </svg>
 """
 

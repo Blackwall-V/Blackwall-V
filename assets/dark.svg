@@ -2,6 +2,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480"
      role="img" aria-label="Blackwall-V retro terminal (dark)">
   <defs>
+    <clipPath id="canvasClip">
+      <rect width="960" height="480" rx="20" ry="20"/>
+    </clipPath>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#0d160c"/>
       <stop offset="0.5" stop-color="#0a0f08"/>
@@ -20,6 +23,7 @@
     </filter>
   </defs>
 
+  <g clip-path="url(#canvasClip)">
   <rect width="960" height="480" fill="url(#bg)"/>
 
   <g filter="url(#soft)" opacity="0.40">
@@ -34,66 +38,68 @@
     </circle>
   </g>
 
-  <rect x="22" y="50" width="916" height="412" rx="12"
+  <rect x="10" y="10" width="940" height="460" rx="10"
         fill="#08120a" stroke="rgba(60,200,90,0.30)" stroke-width="1.5"/>
-  <rect x="22" y="50" width="916" height="28" rx="12" fill="#000000" opacity="0.55"/>
-  <rect x="22" y="72" width="916" height="6" fill="#000000" opacity="0.55"/>
-  <circle cx="40" cy="65" r="5" fill="#ff5f57"/>
-  <circle cx="58" cy="65" r="5" fill="#febc2e"/>
-  <circle cx="76" cy="65" r="5" fill="#28c840"/>
-  <text x="100" y="70" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <rect x="10" y="10" width="940" height="28" rx="10" fill="#000000" opacity="0.55"/>
+  <rect x="10" y="32" width="940" height="6" fill="#000000" opacity="0.55"/>
+  <circle cx="28" cy="25" r="5" fill="#ff5f57"/>
+  <circle cx="46" cy="25" r="5" fill="#febc2e"/>
+  <circle cx="64" cy="25" r="5" fill="#28c840"/>
+  <text x="88" y="30" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#5a8f72">blackwall@localhost: ~</text>
-  <circle cx="916" cy="65" r="4" fill="#ff3b30">
+  <circle cx="928" cy="25" r="4" fill="#ff3b30">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
   </circle>
 
   <!-- large V logo on the left -->
   <g filter="url(#bloom)">
-      <text x="18.5" y="172.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ██╗   ██╗<animate attributeName="opacity" from="0" to="1" begin="0.20s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="3.6s" repeatCount="indefinite"/></text>
-      <text x="18.5" y="210.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ██║   ██║<animate attributeName="opacity" from="0" to="1" begin="0.38s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.0s" repeatCount="indefinite"/></text>
-      <text x="18.5" y="248.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ██║   ██║<animate attributeName="opacity" from="0" to="1" begin="0.56s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.4s" repeatCount="indefinite"/></text>
-      <text x="18.5" y="286.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ╚██╗ ██╔╝<animate attributeName="opacity" from="0" to="1" begin="0.74s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.8s" repeatCount="indefinite"/></text>
-      <text x="18.5" y="324.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">     ╚████╔╝<animate attributeName="opacity" from="0" to="1" begin="0.92s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.2s" repeatCount="indefinite"/></text>
-      <text x="18.5" y="362.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">      ╚══╝<animate attributeName="opacity" from="0" to="1" begin="1.10s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.6s" repeatCount="indefinite"/></text>
+      <text x="12.5" y="152.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ██╗   ██╗<animate attributeName="opacity" from="0" to="1" begin="0.20s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="3.6s" repeatCount="indefinite"/></text>
+      <text x="12.5" y="190.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ██║   ██║<animate attributeName="opacity" from="0" to="1" begin="0.38s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.0s" repeatCount="indefinite"/></text>
+      <text x="12.5" y="228.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ██║   ██║<animate attributeName="opacity" from="0" to="1" begin="0.56s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.4s" repeatCount="indefinite"/></text>
+      <text x="12.5" y="266.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">    ╚██╗ ██╔╝<animate attributeName="opacity" from="0" to="1" begin="0.74s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="4.8s" repeatCount="indefinite"/></text>
+      <text x="12.5" y="304.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">     ╚████╔╝<animate attributeName="opacity" from="0" to="1" begin="0.92s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.2s" repeatCount="indefinite"/></text>
+      <text x="12.5" y="342.2" xml:space="preserve" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="30" font-weight="700" fill="#7dffb0" opacity="0">      ╚══╝<animate attributeName="opacity" from="0" to="1" begin="1.10s" dur="0.5s" fill="freeze"/><animate attributeName="opacity" values="1;0.55;1" begin="3s" dur="5.6s" repeatCount="indefinite"/></text>
   </g>
 
   <!-- vertical divider between logo and script -->
-  <line x1="314" y1="131.0" x2="314" y2="379.0"
+  <line x1="314" y1="111.0" x2="314" y2="359.0"
         stroke="#39ff14" stroke-width="1" opacity="0.4">
     <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/>
   </line>
 
   <!-- typed script on the right -->
-  <g opacity="0"><text x="334" y="153.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#ffb454">$</text><text x="352" y="153.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#39ff14">whoami</text><animate attributeName="opacity" from="0" to="1" begin="0.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="352" y="175.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#7dffb0">blackwall-v — data/ML engineer</text><animate attributeName="opacity" from="0" to="1" begin="1.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="334" y="197.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#ffb454">$</text><text x="352" y="197.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#39ff14">cat stack.txt</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="352" y="219.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#7dffb0">python · pandas · sklearn · pycaret</text><animate attributeName="opacity" from="0" to="1" begin="3.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="352" y="241.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#7dffb0">rust · lua · linux</text><animate attributeName="opacity" from="0" to="1" begin="4.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="334" y="263.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#ffb454">$</text><text x="352" y="263.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#39ff14">echo $STATUS</text><animate attributeName="opacity" from="0" to="1" begin="5.40s" dur="0.35s" fill="freeze"/></g>
-  <g opacity="0"><text x="352" y="285.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#5fd0ff">open to collaboration</text><animate attributeName="opacity" from="0" to="1" begin="6.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="334" y="133.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#ffb454">$</text><text x="352" y="133.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#39ff14">whoami</text><animate attributeName="opacity" from="0" to="1" begin="0.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="352" y="155.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#7dffb0">blackwall-v — data/ML engineer</text><animate attributeName="opacity" from="0" to="1" begin="1.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="334" y="177.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#ffb454">$</text><text x="352" y="177.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#39ff14">cat stack.txt</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="352" y="199.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#7dffb0">python · pandas · sklearn · pycaret</text><animate attributeName="opacity" from="0" to="1" begin="3.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="352" y="221.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#7dffb0">rust · lua · linux</text><animate attributeName="opacity" from="0" to="1" begin="4.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="334" y="243.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#ffb454">$</text><text x="352" y="243.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="700" fill="#39ff14">echo $STATUS</text><animate attributeName="opacity" from="0" to="1" begin="5.40s" dur="0.35s" fill="freeze"/></g>
+  <g opacity="0"><text x="352" y="265.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" font-weight="500" fill="#5fd0ff">open to collaboration</text><animate attributeName="opacity" from="0" to="1" begin="6.40s" dur="0.35s" fill="freeze"/></g>
 
   <!-- $ ls ./stack label -->
-  <text x="334" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="334" y="309.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="13" font-weight="700" fill="#5a8f72">$ ls ./stack</text>
-      <g opacity="0"><text x="334" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[python]</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="417.2" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[pandas]</text><animate attributeName="opacity" from="0" to="1" begin="2.52s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="500.4" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[sklearn]</text><animate attributeName="opacity" from="0" to="1" begin="2.64s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="592.0" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[pycaret]</text><animate attributeName="opacity" from="0" to="1" begin="2.76s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="683.6" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[rust]</text><animate attributeName="opacity" from="0" to="1" begin="2.88s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="750.0" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[lua]</text><animate attributeName="opacity" from="0" to="1" begin="3.00s" dur="0.4s" fill="freeze"/></g>
-      <g opacity="0"><text x="808.0" y="349.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[linux]</text><animate attributeName="opacity" from="0" to="1" begin="3.12s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="334" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[python]</text><animate attributeName="opacity" from="0" to="1" begin="2.40s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="417.2" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[pandas]</text><animate attributeName="opacity" from="0" to="1" begin="2.52s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="500.4" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[sklearn]</text><animate attributeName="opacity" from="0" to="1" begin="2.64s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="592.0" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[pycaret]</text><animate attributeName="opacity" from="0" to="1" begin="2.76s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="683.6" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[rust]</text><animate attributeName="opacity" from="0" to="1" begin="2.88s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="750.0" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[lua]</text><animate attributeName="opacity" from="0" to="1" begin="3.00s" dur="0.4s" fill="freeze"/></g>
+      <g opacity="0"><text x="808.0" y="329.0" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13" font-weight="700" fill="#ffb454">[linux]</text><animate attributeName="opacity" from="0" to="1" begin="3.12s" dur="0.4s" fill="freeze"/></g>
 
   <!-- status bar -->
-  <rect x="22" y="440" width="916" height="26" fill="#000000" opacity="0.5"/>
-  <rect x="22" y="440" width="916" height="26" fill="none" stroke="rgba(60,200,90,0.30)" stroke-width="1"/>
-  <circle cx="40" cy="453" r="4" fill="#28c840">
+  <path d="M 10 444 H 950 V 460 Q 950 470 940 470 H 20 Q 10 470 10 460 Z"
+        fill="#000000" opacity="0.5"/>
+  <path d="M 10 444 H 950 V 460 Q 950 470 940 470 H 20 Q 10 470 10 460 Z"
+        fill="none" stroke="rgba(60,200,90,0.30)" stroke-width="1"/>
+  <circle cx="28" cy="457" r="4" fill="#28c840">
     <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
-  <text x="54" y="457" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="42" y="461" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#39ff14">online</text>
-  <text x="112" y="457" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
+  <text x="100" y="461" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#5a8f72">| branch: main | utf-8 | RETRO-OS v1.0</text>
-  <text x="920" y="457" text-anchor="end"
+  <text x="932" y="461" text-anchor="end"
         font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
         font-size="11" fill="#ffb454">github.com/Blackwall-V</text>
 
@@ -269,4 +275,5 @@
 
   <!-- vignette -->
   <rect width="960" height="480" fill="url(#vignette)"/>
+  </g>
 </svg>
